@@ -37,7 +37,7 @@ function Contact(props) {
         <div key={contact.id} className='contact' onClick={(e) => setExpanded(!expanded)}>
             <div className='title'>
                 <h3>{contact.name}</h3>
-                <button className='button red' onClick={doDelete}>Delete</button>
+                <button className='button red' onClick={doDelete}>Delete Contact</button>
             </div>
 
             <div style={expandStyle}>
