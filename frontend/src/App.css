@@ -7,29 +7,45 @@
     border-style: solid;
     border-radius: 5px;
     border-color: black;
-    padding: 5px;
+    padding: 10px;
     margin: 5px;
     cursor: pointer;
-
+    font-size: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 .contact:hover {
     background-color: #E0E0E0;
 }
-.contact > .title {
+.contact > .name {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
-.contact > .title > h3 {
+.contact > .name > h3 {
     margin: 0px;
     text-align: center;
 }
+.unbold {
+    font-weight: normal;
+}
 
+.contact > .address{
+    display: flex;
+    font-style: normal;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.contact > .address > h3 {
+    margin: 0px;
+    text-align: center;
+}
 .button {
     border: none;
     color: white;
@@ -53,7 +69,32 @@
 }
 .red:hover {
     background-color: #da190b;
+    
 }
+.command {
+    font-size: 13px;
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Ensure container spans full width */
+    margin: 0; /* Reset margins */
+    padding: 0; /* Reset padding */
+}
+
+.command h4 {
+ /* Set font size to 13px */
+    margin: 0; /* Remove extra space around heading */
+    padding: 0; /* Remove unwanted padding */
+}
+.normal-text {
+    font-weight: normal;
+    font-style: normal;
+}
+
+.highlight {
+    font-weight: bold;
+    font-style: italic;
+}
+
+
 
 .page {
     height: 100vh;
@@ -77,7 +118,7 @@
 
     border-radius: 5px;
     margin-bottom: 15px;
-    
+    width: 30%;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
