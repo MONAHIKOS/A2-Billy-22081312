@@ -12,7 +12,7 @@ function PhoneList(props) {
                 <thead>
                     <tr>
                         <th>Phone Type</th>
-                        <th>Number</th>
+                        <th>Phone Number</th>
                         <th></th>
                     </tr>
                 </thead>
