@@ -47,6 +47,7 @@ function Contact(props) {
                     Address: <span className='unbold'>{contact.address}</span>
                 </h3>
             </div>
+            
             <div className='command'>
                 <h4>
                     <span className='normal-text'>Click to</span> 
@@ -55,16 +56,11 @@ function Contact(props) {
                     <span className='highlight'> collapse</span>
                 </h4>
             </div>
-
-
             
-            <div className='title' style={{ textAlign: 'left', width: '100%' }}>
+            <div className='title' style={{ marginTop: '10px',textAlign: 'left', width: '100%' }}>
              <button className='button red' onClick={doDelete}>Delete Contact</button>
             </div>
           
-
-            
-
             <div style={expandStyle}>
                 <hr />
                 <PhoneList phones={phones} setPhones={setPhones} contact={contact} />

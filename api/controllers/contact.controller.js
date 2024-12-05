@@ -1,6 +1,7 @@
 const db = require("../models");
 const Contacts = db.contacts;
 const Phones = db.phones;
+const Companies = db.companies;
 const Op = db.Sequelize.Op;
 
 // Create contact

@@ -81,7 +81,7 @@
 
 .command h4 {
  /* Set font size to 13px */
-    margin: 0; /* Remove extra space around heading */
+    margin: 10px; /* Remove extra space around heading */
     padding: 0; /* Remove unwanted padding */
 }
 .normal-text {
@@ -181,6 +181,7 @@
     margin-right: 5px;
     width: 100%;
 }
+
 
 .stats > p {
     color: gray;
