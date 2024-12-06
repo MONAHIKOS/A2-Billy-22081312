@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     const company = {
         company_name: req.body.company_name,
         company_address: req.body.company_address,
-        contactId: parseInt(req.params.contactId),
+        contactId: parseInt(req.params.contactId)
     };
 
     Companies.create(company)
@@ -16,48 +16,44 @@ exports.create = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the company.",
+                message:
+                    err.message || "Some error occurred"
             });
         });
 };
 
-// Get all companies for a specific contact
+// Get all companies
 exports.findAll = (req, res) => {
+
     Companies.findAll({
         where: {
-            contactId: parseInt(req.params.contactId),
-        },
+            contactId: parseInt(req.params.contactId)
+        }
     })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving companies.",
+                message: err.message || "Some error occurred"
             });
         });
 };
 
-// Get one company by id for a specific contact
+// Get one company by id
 exports.findOne = (req, res) => {
     Companies.findOne({
         where: {
             contactId: req.params.contactId,
-            company_id: req.params.companyId,
-        },
+            id: req.params.companyId
+        }
     })
         .then(data => {
-            if (!data) {
-                res.status(404).send({
-                    message: `Company with id=${req.params.companyId} not found.`,
-                });
-            } else {
-                res.send(data);
-            }
+            res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving the company.",
+                message: err.message || "Some error occurred"
             });
         });
 };
@@ -67,22 +63,22 @@ exports.update = (req, res) => {
     const id = req.params.companyId;
 
     Companies.update(req.body, {
-        where: { company_id: id, contactId: req.params.contactId },
+        where: { id: id, contactId: req.params.contactId }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Company was updated successfully.",
+                    message: "Company was updated successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot update company with id=${id}. Maybe company was not found or req.body is empty.`,
+                    message: `Cannot update Company`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating company with id=" + id,
+                message: "Error updating Company with id=" + id
             });
         });
 };
@@ -92,22 +88,22 @@ exports.delete = (req, res) => {
     const id = req.params.companyId;
 
     Companies.destroy({
-        where: { company_id: id, contactId: req.params.contactId },
+        where: { id: id, contactId: req.params.contactId }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Company was deleted successfully!",
+                    message: "Company was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete company with id=${id}. Maybe company was not found.`,
+                    message: `Cannot delete Company`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete company with id=" + id,
+                message: "Could not delete Company with id=" + id
             });
         });
 };

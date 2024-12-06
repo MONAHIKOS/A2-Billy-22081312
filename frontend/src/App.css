@@ -16,6 +16,7 @@
     align-items: center;
 
 }
+
 .contact:hover {
     background-color: #E0E0E0;
 }
@@ -69,20 +70,32 @@
 }
 .red:hover {
     background-color: #da190b;
-    
+
 }
+.blue {
+    background-color: #007bff;
+}
+.blue:hover {
+    background-color: #0056b3;
+}
+.gray {
+    background-color: #6c757d;
+}
+.gray:hover {
+    background-color: #5a6268;
+}
+
 .command {
     font-size: 13px;
-    text-align: left; /* Align text to the left */
-    width: 100%; /* Ensure container spans full width */
-    margin: 0; /* Reset margins */
-    padding: 0; /* Reset padding */
+    text-align: left; 
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
 }
 
 .command h4 {
- /* Set font size to 13px */
-    margin: 10px; /* Remove extra space around heading */
-    padding: 0; /* Remove unwanted padding */
+    margin: 10px; 
+    padding: 0; 
 }
 .normal-text {
     font-weight: normal;
@@ -139,37 +152,41 @@
     margin-bottom: 8px;
 }
 
-.phone-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.company-list, .phone-list {
+    width: 100%; 
+    max-width: 600px; 
+    margin: 10px auto; 
 }
-.phone-list > table {
-    margin-top: 10px;
-}
-.phone-list > table > thead > tr > th {
-    padding: 5px;
-}
-.phone-list > table > tbody > tr > td {
-    padding: 5px;
+.collapsible-title {
+    font-size: 16px; 
+    font-weight: bold; 
+    text-align: left; 
+    margin-bottom: 10px; 
 }
 
-.phone-list > table {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+
+.company-list > table, .phone-list > table {
+    width: 100%; 
+    border-collapse: collapse; 
 }
 
-.phone-list > table td, .phone-list > table th {
-    border: 1px solid #b1b1b1;
-    padding: 8px;
+.company-list > table th, .phone-list > table th,
+.company-list > table td, .phone-list > table td {
+    text-align: left; 
+    padding: 8px; 
+    border: 1px solid #b1b1b1; 
 }
 
-.phone-list > table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
+.company-list > table th, .phone-list > table th {
+    background-color: #f1f1f1; 
+    font-weight: bold; 
 }
+
+.company-list > table td, .phone-list > table td {
+    font-size: 14px; 
+}
+
+
 
 .new-phone {
     display: flex;
@@ -207,3 +224,39 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+
+
+.new-company {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.new-company > input {
+    margin-right: 5px;
+    width: 100%;
+}
+
+.collapsible-container {
+    margin-bottom: 20px; 
+}
+  
+.collapsible-title {
+    cursor: pointer; 
+    margin: 10px 0; 
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #333; 
+}
+  
+ .collapsible-content {
+    cursor: pointer; 
+    margin-top: 5px;
+    border-top: 1px solid #ccc; 
+    padding-top: 10px; 
+}
+  
+
+
+
