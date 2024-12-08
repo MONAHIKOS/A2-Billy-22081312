@@ -6,22 +6,31 @@ const Op = db.Sequelize.Op;
 
 // Create contact
 exports.create = (req, res) => {
+    const { name, address } = req.body;
+
+    // Backend validation: Ensure at least one field is provided
+    if (!name?.trim() && !address?.trim()) {
+        return res.status(400).send({
+            message: "At least one of the fields (name or address) must be provided.",
+        });
+    }
+
     const contact = {
-        name: req.body.name,
-        address: req.body.address,
+        name: name || null, // Default to null if not provided
+        address: address || null,
     };
 
     Contacts.create(contact)
-        .then(data => {
+        .then((data) => {
             res.send(data);
         })
-        .catch(err => {
+        .catch((err) => {
             res.status(500).send({
-                message:
-                err.message || "Some error occurred"
+                message: err.message || "Some error occurred while creating the contact.",
             });
         });
 };
+
 
 // Get all contacts
 exports.findAll = (req, res) => {

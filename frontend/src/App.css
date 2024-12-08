@@ -16,37 +16,36 @@
     align-items: center;
 
 }
+.contact .name,
+.contact .address {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Vertically align label and input */
+    justify-content: flex-start; /* Align label and input to the left */
+    margin-bottom: 10px; /* Add spacing between rows */
+    width: 100%;
+}
 
+.contact .name h3,
+.contact .address h3 {
+    margin: 0;
+    text-align: left; /* Align labels to the left */
+    width: 90px; /* Consistent width for the labels */
+    font-size: 16px; /* Uniform font size for labels */
+}
 .contact:hover {
     background-color: #E0E0E0;
 }
-.contact > .name {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-.contact > .name > h3 {
-    margin: 0px;
-    text-align: center;
-}
+
 .unbold {
     font-weight: normal;
 }
+.style {
+    font-size: 16px;
+    font-weight: normal;
+}
 
-.contact > .address{
-    display: flex;
-    font-style: normal;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-.contact > .address > h3 {
-    margin: 0px;
-    text-align: center;
-}
+
 .button {
     border: none;
     color: white;
@@ -57,6 +56,7 @@
     font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
+    margin: 5px;
 }
 
 .green {
@@ -149,7 +149,7 @@
 }
 
 .new-contact > input {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .company-list, .phone-list {
@@ -158,13 +158,25 @@
     margin: 10px auto; 
 }
 .collapsible-title {
-    font-size: 16px; 
-    font-weight: bold; 
-    text-align: left; 
-    margin-bottom: 10px; 
+    cursor: pointer; /* Indicates interactivity */
+    font-size: 16px; /* Sets font size */
+    font-weight: bold; /* Makes it stand out */
+    text-align: left; /* Aligns text */
+    margin: 10px 0; /* Adds vertical spacing */
+    color: #333; /* Sets text color */
 }
 
 
+.new-phone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.new-phone > input {
+    margin-right: 5px;
+    width: 100%;
+}
 .company-list > table, .phone-list > table {
     width: 100%; 
     border-collapse: collapse; 
@@ -184,19 +196,6 @@
 
 .company-list > table td, .phone-list > table td {
     font-size: 14px; 
-}
-
-
-
-.new-phone {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.new-phone > input {
-    margin-right: 5px;
-    width: 100%;
 }
 
 
@@ -242,21 +241,60 @@
     margin-bottom: 20px; 
 }
   
-.collapsible-title {
-    cursor: pointer; 
-    margin: 10px 0; 
-    font-size: 16px; 
-    font-weight: bold; 
-    color: #333; 
-}
-  
- .collapsible-content {
+.collapsible-content {
     cursor: pointer; 
     margin-top: 5px;
     border-top: 1px solid #ccc; 
     padding-top: 10px; 
 }
-  
+.contact .name input,
+.contact .address input {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    flex-grow: 1; /* Make input field take remaining space */
+    max-width: 300px; /* Optional: Set a maximum width for the input field */
+}
 
+.contact .contactAction{
+   text-align: left;
+   width: 100%;
+}
+.contact .editContact{
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+
+}
+.company-list table input,
+.phone-list table input {
+    width: 100%; 
+    box-sizing: border-box; 
+    padding: 5px; 
+    font-size: 14px; 
+    border: 1px solid #ccc; 
+    border-radius: 3px; 
+}
+
+.company-list table,
+.phone-list table {
+    table-layout: fixed; 
+}
+
+.company-list table th,
+.phone-list table th,
+.company-list table td,
+.phone-list table td {
+    word-wrap: break-word; 
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px; /* Space above the message */
+    text-align: center;
+}
 
 
