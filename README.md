@@ -135,5 +135,5 @@ http get http://localhost/api/contacts/1/phones
 ```
 
 ### ASM 2
-![Alt text](screenshot/Screenshot 2024-12-10 at 21.34.45.png)
+$[alt text](screenshot/Screenshot 2024-12-10 at 21.34.45.png)
 
