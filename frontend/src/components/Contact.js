@@ -104,15 +104,15 @@ function Contact(props) {
                     <span className="style">{contact.address}</span>
                 )}
             </div>
-
             <div className="command">
                 <h4>
                     <span className="normal-text">Click to</span>
                     <span className="highlight"> expand </span>
                     <span className="normal-text">or</span>
-                    <span className="highlight"> collapse {contact.name}'s lists</span>
+                    <span className="highlight"> collapse lists</span>
                 </h4>
             </div>
+
 
             {isEditing ? (
                 <div className="editContact" >
@@ -135,6 +135,7 @@ function Contact(props) {
                     </button>
                 </div>
             ) : (
+                
                 <div className="contactAction" >
                     <button
                         className="button blue"
@@ -160,10 +161,7 @@ function Contact(props) {
             {expanded && !isEditing && (
                 <div className="collapsible-content">
                     <h4 className="collapsible-title">Company List</h4>
-                    <CompanyList
-                        companies={companies}
-                        setCompanies={setCompanies}
-                        contact={contact}
+                    <CompanyList companies={companies}setCompanies={setCompanies}contact={contact}
                     />
 
                     <h4 className="collapsible-title">Phone List</h4>

@@ -90,28 +90,46 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = parseInt(req.params.contactId);
 
+    // Step 1: Delete associated phones
     Phones.destroy({
-        where: { contactId: id }
+        where: { contactId: id },
     })
-    .then(num => {
-        Contacts.destroy({
-            where: { id: id }
+    .then(() => {
+        // Step 2: Delete associated companies
+        Companies.destroy({
+            where: { contactId: id },
         })
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "Contact was deleted successfully!"
+        .then(() => {
+            // Step 3: Delete the contact itself
+            Contacts.destroy({
+                where: { id: id },
+            })
+            .then((num) => {
+                if (num == 1) {
+                    res.send({
+                        message: "Contact was deleted successfully!",
+                    });
+                } else {
+                    res.send({
+                        message: `Cannot delete Contact`,
+                    });
+                }
+            })
+            .catch((err) => {
+                res.status(500).send({
+                    message: "Could not delete Contact with id=" + id,
                 });
-            } else {
-                res.send({
-                    message: `Cannot delete Contact`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Could not delete Contact with id=" + id
             });
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Could not delete associated Companies for Contact with id=" + id,
+            });
+        });
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message: "Could not delete associated Phones for Contact with id=" + id,
         });
     });
 };
