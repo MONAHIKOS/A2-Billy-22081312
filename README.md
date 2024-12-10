@@ -135,5 +135,18 @@ http get http://localhost/api/contacts/1/phones
 ```
 
 ### ASM 2
-![alt text](screenshot/Screenshot2024-12-10at21.34.45.png)
+![alt text](screenshot/IMG1.png)
+![alt text](screenshot/IMG2.png)
+![alt text](screenshot/IMG3.png)
+![alt text](screenshot/IMG4.png)
+![alt text](screenshot/IMG5.png)
+![alt text](screenshot/IMG6.png)
+![alt text](screenshot/IMG7.png)
+![alt text](screenshot/IMG8.png)
+![alt text](screenshot/IMG9.png)
+![alt text](screenshot/IMG10.png)
+![alt text](screenshot/IMG11.png)
+![alt text](screenshot/IMG12.png)
+![alt text](screenshot/IMG13.png)
+
 
