@@ -5,6 +5,16 @@ function Customer() {
   const [customer_name, setCustomerName] = useState("");
   const [customer_email, setCustomerEmail] = useState("");
 
+  // Fetch Customers
+  useEffect(() => {
+    fetch("http://localhost/api/customers")
+      .then((response) => response.json())
+      .then((data) => setCustomers(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+
   // Create a new customer
   async function createCustomer(e) {
     e.preventDefault();
@@ -36,7 +46,9 @@ function Customer() {
       method: "DELETE",
     });
 
-    setCustomers(customers.filter((customer) => customer.customer_id !== customer_id));
+    setCustomers(
+      customers.filter((customer) => customer.customer_id !== customer_id)
+    );
   }
 
   return (
@@ -85,7 +97,7 @@ function CustomerCard({ customer, customers, setCustomers }) {
 
   // Fetch customer orders
   useEffect(() => {
-    fetch(`http://localhost/api/orders/${customer.customer_id}`)
+    fetch(`http://localhost/api/orders/customer/${customer.customer_id}`)
       .then((response) => response.json())
       .then((data) => setOrders(data))
       .catch((error) => {
@@ -104,7 +116,9 @@ function CustomerCard({ customer, customers, setCustomers }) {
       method: "DELETE",
     });
 
-    setCustomers(customers.filter((c) => c.customer_id !== customer.customer_id));
+    setCustomers(
+      customers.filter((c) => c.customer_id !== customer.customer_id)
+    );
   }
 
   return (
