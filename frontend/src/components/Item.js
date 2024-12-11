@@ -5,7 +5,7 @@ function Item() {
   const [item_name, setItemName] = useState("");
   const [item_price, setItemPrice] = useState("");
 
-  // Item
+  // Fetch items
   useEffect(() => {
     fetch("http://localhost/api/items")
       .then((response) => response.json())
@@ -49,6 +49,24 @@ function Item() {
     setItems(items.filter((item) => item.item_id !== item_id));
   }
 
+  // Update an item
+  async function updateItem(item_id, updatedItem) {
+    await fetch(`http://localhost/api/items/${item_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedItem),
+    });
+
+    // Optimistically update the item in the state
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.item_id === item_id ? { ...item, ...updatedItem } : item
+      )
+    );
+  }
+
   return (
     <div className="item-container">
       {/* New Item Form */}
@@ -80,6 +98,7 @@ function Item() {
             key={item.item_id}
             item={item}
             onDelete={() => deleteItem(item.item_id)}
+            onUpdate={(updatedItem) => updateItem(item.item_id, updatedItem)}
           />
         ))}
       </div>
@@ -88,18 +107,27 @@ function Item() {
 }
 
 // Component for displaying individual items
-function ItemCard({ item, onDelete }) {
+function ItemCard({ item, onDelete, onUpdate }) {
   const [expanded, setExpanded] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editItemName, setEditItemName] = useState(item.item_name);
+  const [editItemPrice, setEditItemPrice] = useState(item.item_price);
 
-  const expandStyle = {
-    display: expanded ? "block" : "none",
+  const toggleExpanded = () => setExpanded(!expanded);
+
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+
+    onUpdate({
+      item_name: editItemName,
+      item_price: parseInt(editItemPrice),
+    });
+
+    setIsEditing(false);
   };
 
   return (
-    <div
-      className="item-card"
-      onClick={() => setExpanded(!expanded)}
-    >
+    <div className="item-card" onClick={toggleExpanded}>
       <div className="title">
         <h3>Item Data</h3>
         <div className="item-info">
@@ -111,15 +139,59 @@ function ItemCard({ item, onDelete }) {
           </p>
         </div>
 
-        <button className="button red" onClick={(e) => { e.stopPropagation(); onDelete(); }}>
+        <button
+          className="button red"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete();
+          }}
+        >
           Delete Item
         </button>
       </div>
 
-      <div style={expandStyle}>
-        <hr />
-        <p>Additional Details (if any) can go here.</p>
-      </div>
+      {expanded && (
+        <div className="expanded-section" onClick={(e) => e.stopPropagation()}>
+          {isEditing ? (
+            <form className="edit-item" onSubmit={handleEditSubmit}>
+              <input
+                type="text"
+                value={editItemName}
+                onChange={(e) => setEditItemName(e.target.value)}
+                placeholder="Item Name"
+              />
+              <input
+                type="text"
+                value={editItemPrice}
+                onChange={(e) => setEditItemPrice(e.target.value)}
+                placeholder="Item Price"
+              />
+              <button className="button green" type="submit">
+                Save
+              </button>
+              <button
+                className="button gray"
+                type="button"
+                onClick={() => setIsEditing(false)}
+              >
+                Cancel
+              </button>
+            </form>
+          ) : (
+            <>
+              <button
+                className="button blue"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsEditing(true);
+                }}
+              >
+                Edit
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
