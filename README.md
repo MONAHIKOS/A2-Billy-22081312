@@ -135,6 +135,15 @@ http get http://localhost/api/contacts/1/phones
 ```
 
 ### ASM 2
+# Zefanya Billy Kenny G
+
+## Repository Link
+[Click here to access the repository](https://github.com/MONAHIKOS/A2-Billy-22081312)
+
+## Clone
+git clone https://github.com/MONAHIKOS/A2-Billy-22081312.git
+git clone -b bonusfeature https://github.com/MONAHIKOS/A2-Billy-22081312.git
+
 ![alt text](screenshot/IMG1.png)
 ![alt text](screenshot/IMG2.png)
 ![alt text](screenshot/IMG3.png)
