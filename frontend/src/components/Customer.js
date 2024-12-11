@@ -40,17 +40,6 @@ function Customer() {
     setCustomerEmail("");
   }
 
-  // Delete a customer
-  async function deleteCustomer(customer_id) {
-    await fetch(`http://localhost/api/customers/${customer_id}`, {
-      method: "DELETE",
-    });
-
-    setCustomers(
-      customers.filter((customer) => customer.customer_id !== customer_id)
-    );
-  }
-
   return (
     <div className="customer-container">
       {/* New Customer Form */}
@@ -105,8 +94,10 @@ function CustomerCard({ customer, customers, setCustomers }) {
       });
   }, [customer.customer_id]);
 
-  const expandStyle = {
-    display: expanded ? "block" : "none",
+  // Toggle expanded state
+  const toggleExpand = (e) => {
+    e.stopPropagation(); 
+    setExpanded(!expanded);
   };
 
   async function doDelete(e) {
@@ -122,7 +113,7 @@ function CustomerCard({ customer, customers, setCustomers }) {
   }
 
   return (
-    <div className="customer-card" onClick={() => setExpanded(!expanded)}>
+    <div className="customer-card" onClick={toggleExpand}>
       <div className="title">
         <h3>Customer Summary</h3>
         <div className="customer-info">
@@ -145,13 +136,20 @@ function CustomerCard({ customer, customers, setCustomers }) {
         </button>
       </div>
 
-      <div style={expandStyle}>
-        <OrderList orders={orders} setOrders={setOrders} />
-        <hr />
-      </div>
+      {expanded && (
+        <div
+          className="expanded-section"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <OrderList orders={orders} />
+          <NewOrderForm customer_id={customer.customer_id} setOrders={setOrders} />
+          <hr />
+        </div>
+      )}
     </div>
   );
 }
+
 
 // Component for displaying orders for a specific customer
 function OrderList({ orders }) {
@@ -176,6 +174,58 @@ function OrderList({ orders }) {
         <p>No orders available for this customer.</p>
       )}
     </div>
+  );
+}
+
+// Component for creating a new order
+function NewOrderForm({ customer_id, setOrders }) {
+  const [order_date, setOrderDate] = useState("");
+  const [item_id, setItemId] = useState("");
+
+  async function createOrder(e) {
+    e.preventDefault();
+
+    const response = await fetch("http://localhost/api/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        order_date,
+        customer_id,
+        item_id,
+      }),
+    });
+
+    const newOrder = await response.json();
+
+    if (newOrder.order_id) {
+      setOrders((prevOrders) => [...prevOrders, newOrder]);
+    }
+
+    setOrderDate("");
+    setItemId("");
+  }
+
+  return (
+    <form className="new-order" onSubmit={createOrder}>
+      <h4>Create New Order</h4>
+      <input
+        type="date"
+        placeholder="Order Date"
+        value={order_date}
+        onChange={(e) => setOrderDate(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Item ID"
+        value={item_id}
+        onChange={(e) => setItemId(e.target.value)}
+      />
+      <button className="button blue" type="submit">
+        Create Order
+      </button>
+    </form>
   );
 }
 

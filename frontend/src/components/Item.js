@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Item() {
   const [items, setItems] = useState([]);
   const [item_name, setItemName] = useState("");
   const [item_price, setItemPrice] = useState("");
+
+  // Item
+  useEffect(() => {
+    fetch("http://localhost/api/items")
+      .then((response) => response.json())
+      .then((data) => setItems(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
   // Create a new item
   async function createItem(e) {
