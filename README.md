@@ -133,5 +133,13 @@ X-Powered-By: Express
 http get http://localhost/api/contacts/1/phones
 
 ```
+## TASK 6
 
-### Phone API
+![alt text](screenshot/item1.png)
+![alt text](screenshot/Item2.png)
+![alt text](screenshot/order1.png)
+![alt text](screenshot/order2.png)
+![alt text](screenshot/customer1.png)
+![alt text](screenshot/customer2.png)
+
+
