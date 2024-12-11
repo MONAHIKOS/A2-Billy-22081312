@@ -142,6 +142,7 @@ http get http://localhost/api/contacts/1/phones
 
 ## Clone
 git clone https://github.com/MONAHIKOS/A2-Billy-22081312.git
+
 git clone -b bonusfeature https://github.com/MONAHIKOS/A2-Billy-22081312.git
 
 ![alt text](screenshot/IMG1.png)
