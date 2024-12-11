@@ -134,6 +134,14 @@ http get http://localhost/api/contacts/1/phones
 
 ```
 ## TASK 6
+# Zefanya Billy Kenny G
+
+## Repository Link
+[Click here to access the repository](https://github.com/MONAHIKOS/A2-Billy-22081312)
+
+## Clone
+git clone https://github.com/MONAHIKOS/A2-Billy-22081312.git
+git clone -b bonusfeature https://github.com/MONAHIKOS/A2-Billy-22081312.git
 
 ![alt text](screenshot/item1.png)
 ![alt text](screenshot/Item2.png)
